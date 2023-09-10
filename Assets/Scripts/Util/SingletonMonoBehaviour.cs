@@ -16,9 +16,9 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : Component
             return Instance;
         }
     }
-
+    
     static void SetupInstance()
-    {  
+    {
         var gameObj = new GameObject
         {
             name = typeof(T).Name
@@ -26,5 +26,14 @@ public class SingletonMonoBehaviour<T> : MonoBehaviour where T : Component
 
         Instance = gameObj.AddComponent<T>();
         DontDestroyOnLoad(gameObj);
+    }
+
+    void Awake()
+    {
+        if (Instance != null && Instance != this)
+        {
+            Debug.LogError($"Instance Duplicated : {this.name}");
+            Destroy(gameObject);
+        }
     }
 }

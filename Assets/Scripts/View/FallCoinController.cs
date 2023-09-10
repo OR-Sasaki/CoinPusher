@@ -2,7 +2,7 @@
 
 namespace View
 {
-    public class FallCoinController : SingletonMonoBehaviour<FallCoinController>
+    public class FallCoinController : MonoBehaviour
     {
         [SerializeField] Transform fallPositionMaxX;
         [SerializeField] Transform fallPositionMinX;

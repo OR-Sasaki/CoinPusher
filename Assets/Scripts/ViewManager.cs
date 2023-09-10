@@ -9,13 +9,14 @@ public class ViewManager : SingletonMonoBehaviour<ViewManager>
     public IObservable<IInputMessage> OnInputMessage => onInputMessageSubject;
 
     [SerializeField] float tapZ = 5;
+    [SerializeField] FallCoinController fallCoinController;
     
     public void OnOutputMessage(IOutputMessage outputMessage)
     {
         switch (outputMessage)
         {
             case FallCoinOutputMessage fallCoin:
-                FallCoinController.I.FallCoin(fallCoin.ClickPosition);
+                fallCoinController.FallCoin(fallCoin.ClickPosition);
                 break;
         }
     }
