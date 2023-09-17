@@ -17,7 +17,6 @@ namespace View
             var y = position.y;
             var z = position.z;
             
-            Debug.Log(new Vector3(x, y, z));
             Instantiate(coinPrefab, new Vector3(x, y, z), Random.rotation);
         }
     }
