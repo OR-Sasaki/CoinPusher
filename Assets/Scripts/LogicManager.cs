@@ -14,7 +14,15 @@ public static class LogicManager
         {
             case FallCoinInputMessage fallCoin:
                 if (!EventSystem.current.IsPointerOverGameObject())
-                    onOutputMessageSubject.OnNext(new FallCoinOutputMessage { ClickPosition = fallCoin.ClickPosition});
+                {
+                    onOutputMessageSubject.OnNext(new FallCoinOutputMessage { ClickPosition = fallCoin.ClickPosition });
+                    if (DataStore.CoinNum > 0) DataStore.CoinNum--;
+                    onOutputMessageSubject.OnNext(new OnChangeCoinOutputMessage());
+                }
+                break;
+            case GetObjectInputMessage getObject:
+                DataStore.CoinNum++;
+                onOutputMessageSubject.OnNext(new OnChangeCoinOutputMessage());
                 break;
         }
     }
