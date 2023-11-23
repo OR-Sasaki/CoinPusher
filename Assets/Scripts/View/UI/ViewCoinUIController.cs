@@ -19,7 +19,7 @@ namespace View
         
         void UpdateText()
         {
-            tmpText.text = $"{DataStore.CoinNum}";
+            tmpText.text = $"{DataStore.coinNum}:{DataStore.slotPointNum}";
         }
     }
 }

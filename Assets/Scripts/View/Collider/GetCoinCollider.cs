@@ -14,6 +14,7 @@ namespace View.Collider
             if (!other.TryGetComponent<CoinController>(out var coin))
                 return;
             
+            Destroy(coin.gameObject);
             onGetCoinSubject.OnNext(new GetObjectInputMessage());
         }
     }

@@ -1,6 +1,6 @@
 ﻿using UnityEngine;
 
-public record FallCoinInputMessage : IInputMessage
+public record OnClickFallCoinInputMessage : IInputMessage
 {
     public Vector3 ClickPosition { get; init; }
 }
