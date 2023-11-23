@@ -2590,11 +2590,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: CoinMachine
       objectReference: {fileID: 0}
-    - target: {fileID: 8367132012095436620, guid: 88e0e9aae29de3844a3a72d16adfa8cb,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 88e0e9aae29de3844a3a72d16adfa8cb, type: 3}
 --- !u!4 &594028288463168839 stripped
