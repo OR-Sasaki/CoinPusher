@@ -18,11 +18,13 @@ public class ViewManager : SingletonMonoBehaviour<ViewManager>
     [SerializeField] FallCoinController fallCoinController;
     [SerializeField] GetCoinCollider getCoinCollider;
     [SerializeField] GetSlotPointCollider getSlotPointCollider;
+    [SerializeField] SlotReelsManager slotReelsManager;
     
     void Start()
     {
         getCoinCollider.OnGetCoin.Subscribe(onInputMessageSubject);
         getSlotPointCollider.OnGetSlotPoint.Subscribe(onInputMessageSubject);
+        slotReelsManager.Setup();
     }
 
     public void OnOutputMessage(IOutputMessage outputMessage)
@@ -43,6 +45,11 @@ public class ViewManager : SingletonMonoBehaviour<ViewManager>
     void Update()
     {
         onInputMessageSubject.OnNext(new EveryFrameInputMessage());
+
+        if (Input.GetKeyDown(KeyCode.A))
+        {
+            onInputMessageSubject.OnNext(new GetSlotPointInputMessage());
+        }
         
         if (Input.GetMouseButtonDown(0) && !EventSystem.current.IsPointerOverGameObject())
         {
@@ -60,9 +67,10 @@ public class ViewManager : SingletonMonoBehaviour<ViewManager>
 
     IEnumerator Direction()
     {
-        Debug.Log("Start Direction");
-        yield return new WaitForSeconds(5);
-        Debug.Log("End Direction");
+        slotReelsManager.StartRotateAllReel();
+        yield return new WaitForSeconds(1);
+        yield return StartCoroutine(slotReelsManager.StopRotateAllReel());
+        yield return new WaitForSeconds(0.1f);
         onInputMessageSubject.OnNext(new DirectionInputMessage());
     }
 }
